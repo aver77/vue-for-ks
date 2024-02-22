@@ -1,8 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomePage from "../components/pages/Home.vue";
-import PersonPage from "../components/pages/Person.vue";
+import HomePage from "../pages/Home.vue";
+import PersonsPage from "../pages/Persons/Persons.vue";
 import { RouteNames } from "./routes";
+
+import SinglePerson from "@/pages/Persons/SinglePerson.vue";
 
 Vue.use(VueRouter);
 
@@ -13,9 +15,14 @@ const routes = [
     component: HomePage
   },
   {
-    path: "/person",
+    path: "/persons",
+    name: RouteNames.PERSONS,
+    component: PersonsPage
+  },
+  {
+    path: "/persons/:id",
     name: RouteNames.PERSON,
-    component: PersonPage
+    component: SinglePerson
   }
 ];
 

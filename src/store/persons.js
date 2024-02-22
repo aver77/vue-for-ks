@@ -75,15 +75,15 @@ const initialState = [
 export default {
   namespaced: true,
   state: {
-    persons: localStorage.getItem("persons") || initialState
+    persons: initialState
   },
   getters: {
-    getAllPersons: (state) => state.persons
+    getAllPersons: (state) => state.persons,
+    getPersonById: (state) => (id) => {
+      return state.persons.find((p) => p.id === id);
+    }
   },
   actions: {
-    getPersonById: ({ commit }, payload) => {
-      commit("getPersonById", payload);
-    },
     addPerson: ({ commit }, payload) => {
       commit("addPerson", payload);
     },
@@ -95,9 +95,6 @@ export default {
     }
   },
   mutations: {
-    getPersonById: (state, payload) => {
-      return state.persons.find((p) => p.id === payload);
-    },
     addPerson: (state, payload) => {
       const newId = genHash();
       state.persons.push({ id: newId, ...payload });
