@@ -43,6 +43,7 @@
         :value="dataToAdd.activity"
         placeholder="activity"
       />
+      <input @change="changePhotoToAdd" type="file" accept="image/*" />
       <div>
         <button @click="_addPerson">add</button>
       </div>
@@ -52,6 +53,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { addPhoto, formatDateStr } from "./utils";
 export default {
   name: "PersonAdd",
   components: {},
@@ -65,7 +67,8 @@ export default {
         die_date: "",
         gender: "",
         biography: "",
-        activity: ""
+        activity: "",
+        photo: ""
       }
     };
   },
@@ -79,25 +82,16 @@ export default {
         die_date,
         gender,
         biography,
-        activity
+        activity,
+        photo
       } = this.dataToAdd;
 
       if (!firstName || !secondName || !patronomyc || !birth_date || !gender) {
         return;
       }
 
-      const formattedBirthDate = new Date(birth_date).toLocaleString("ru-RU", {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric"
-      });
-      const formattedDieDate = die_date
-        ? new Date(birth_date).toLocaleString("ru-RU", {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric"
-          })
-        : "";
+      const formattedBirthDate = formatDateStr(birth_date);
+      const formattedDieDate = formatDateStr(die_date);
 
       this.addPerson({
         firstName,
@@ -107,7 +101,13 @@ export default {
         die_date: formattedDieDate,
         gender,
         biography,
-        activity
+        activity,
+        photo
+      });
+    },
+    changePhotoToAdd(e) {
+      addPhoto(e, (resultPhoto) => {
+        this.dataToAdd = { ...this.dataToAdd, photo: resultPhoto };
       });
     },
     changeDataToAdd(property, newValue) {
