@@ -61,7 +61,7 @@ export default {
     personData() {
       return this.getPersonById(this.$route.params.id);
     },
-    ...mapGetters("persons", ["getAllPersons", "getPersonById"])
+    ...mapGetters("persons", ["getPersonById"])
   },
   methods: {
     getChildrenStr(id) {
