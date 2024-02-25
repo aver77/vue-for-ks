@@ -80,7 +80,7 @@ export default {
   getters: {
     getAllPersons: (state) => state.persons,
     getPersonById: (state) => (id) => {
-      return state.persons.find((p) => p.id === id);
+      return state.persons.find((person) => person.id === id);
     }
   },
   actions: {
