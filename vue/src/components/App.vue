@@ -16,8 +16,8 @@ export default {
 </script>
 
 <style lang="less">
-//@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
-//@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 
 body {
   margin: 0;
