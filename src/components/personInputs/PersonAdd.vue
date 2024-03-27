@@ -106,9 +106,13 @@ export default {
       });
     },
     changePhotoToAdd(e) {
-      addPhoto(e, (resultPhoto) => {
+      const photoSetter = (photo) => {
         this.dataToAdd = { ...this.dataToAdd, photo: resultPhoto };
-      });
+      }
+      addPhoto(e, photoSetter);      
+      // addPhoto(e, (resultPhoto) => {
+      //   this.dataToAdd = { ...this.dataToAdd, photo: resultPhoto };
+      // });
     },
     changeDataToAdd(property, newValue) {
       this.dataToAdd = { ...this.dataToAdd, [property]: newValue };
